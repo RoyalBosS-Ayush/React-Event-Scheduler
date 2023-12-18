@@ -1,9 +1,12 @@
 import Schedular from "./pages/Schedular";
+import { CalendarProvider } from './context/CalendarContext';
 
 function App() {
   return (
     <div className="App">
-      <Schedular />
+      <CalendarProvider>
+        <Schedular />
+      </CalendarProvider>
     </div>
   );
 }

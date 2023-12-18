@@ -1,11 +1,19 @@
 import React, { useCallback } from 'react';
 import './calendar.css'
+import { useCalendar } from '../../context/CalendarContext';
+
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const months = [
+  'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+];
 
 const Calendar = ({ year, month }) => {
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const months = [
-    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-  ];
+  const { setSelectedDate } = useCalendar();
+
+  const handleDateClick = (day) => {
+    const newDate = new Date(year, month - 1, day);
+    setSelectedDate(newDate);
+  };
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -39,7 +47,7 @@ const Calendar = ({ year, month }) => {
     for (let day = 1; day <= daysInMonth; day++) {
       const className = (day === currentDay && year === currentYear && month === currentMonth) ? 'calendar-day today' : 'calendar-day';
       daysArray.push(
-        <td key={`day-${day}`} className={className}>
+        <td key={`day-${day}`} className={className} onClick={() => handleDateClick(day)}>
           {day}
         </td>
       );

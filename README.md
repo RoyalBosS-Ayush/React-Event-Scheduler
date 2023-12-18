@@ -1,3 +1,13 @@
+# Demo
+
+[Visit](https://react-event-scheduler-sepia.vercel.app/)
+
+# Preview
+
+![Desktop-1](./preview/Desktop-1.png)
+![Mobile-1](./preview/Mobile-1.png)
+![Mobile-1](./preview/Mobile-2.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

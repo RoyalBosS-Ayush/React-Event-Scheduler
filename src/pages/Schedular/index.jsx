@@ -2,6 +2,7 @@ import React from 'react';
 import { useCalendar } from '../../context/CalendarContext';
 import MultipleCalendars from '../../components/MultipleCalendars';
 import './schedular.css'
+import EventList from '../../components/EventList';
 
 const Schedular = () => {
   const { selectedDate } = useCalendar();
@@ -12,7 +13,7 @@ const Schedular = () => {
         <MultipleCalendars />
       </div>
       <div className='h-vh center'>
-          {selectedDate ? null : <div>Select a date</div>}
+          {selectedDate ? <EventList selectedDate={selectedDate} /> : <div>Select a date</div>}
       </div>
     </div>
   );

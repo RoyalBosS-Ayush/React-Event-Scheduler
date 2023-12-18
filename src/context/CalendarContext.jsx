@@ -10,7 +10,7 @@ export const useCalendar = () => {
 
 // Context Provider component
 export const CalendarProvider = ({ children }) => {
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const value = {
     selectedDate,

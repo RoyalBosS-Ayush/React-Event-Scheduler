@@ -1,11 +1,14 @@
 import Schedular from "./pages/Schedular";
 import { CalendarProvider } from './context/CalendarContext';
+import { EventProvider } from './context/EventContext';
 
 function App() {
   return (
     <div className="App">
       <CalendarProvider>
-        <Schedular />
+        <EventProvider>
+          <Schedular />
+        </EventProvider>
       </CalendarProvider>
     </div>
   );

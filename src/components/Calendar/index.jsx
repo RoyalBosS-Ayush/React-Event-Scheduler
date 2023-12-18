@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import './calendar.css'
 import { useCalendar } from '../../context/CalendarContext';
+import { useEventContext } from '../../context/EventContext';
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = [
@@ -9,6 +10,7 @@ const months = [
 
 const Calendar = ({ year, month }) => {
   const { setSelectedDate } = useCalendar();
+  const { events } = useEventContext();
 
   const handleDateClick = (day) => {
     const newDate = new Date(year, month - 1, day);
@@ -34,6 +36,16 @@ const Calendar = ({ year, month }) => {
     return new Date(year, month, 1).getDay();
   }, []);
 
+  const hasEvents = (day) => {
+    const eventDate = new Date(year, month - 1, day);
+
+    return events.some((event) => {
+      const eventDateFormatted = event.date.toDateString();
+      const currentDateFormatted = eventDate.toDateString();
+      return eventDateFormatted === currentDateFormatted;
+    });
+  };
+
   const renderCalendar = () => {
     const daysInMonth = getDaysInMonth(date);
     const startDay = getMonthStartDay(date);
@@ -45,7 +57,7 @@ const Calendar = ({ year, month }) => {
 
     const daysArray = [];
     for (let day = 1; day <= daysInMonth; day++) {
-      const className = (day === currentDay && year === currentYear && month === currentMonth) ? 'calendar-day today' : 'calendar-day';
+      const className = `calendar-day ${hasEvents(day) && "event-indicator"} ${(day === currentDay && year === currentYear && month === currentMonth) && 'today'}`;
       daysArray.push(
         <td key={`day-${day}`} className={className} onClick={() => handleDateClick(day)}>
           {day}

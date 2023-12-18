@@ -9,10 +9,10 @@ const Event = ({ id, time, description }) => {
     };
 
     return (
-        <div className="event">
+        <div className="py-4 event border border-neutral-300 mb-4 flex items-start justify-between p-4 rounded-lg">
             <div className="event-details">
-                <p><strong>Time:</strong> {time}</p>
-                <p><strong>Description:</strong> {description}</p>
+                <p className='text-sm mb-1'><strong className='text-base'>Time:</strong> {time}</p>
+                <p className='text-sm'><strong className='text-base'>Description:</strong> {description}</p>
             </div>
             <button onClick={handleDelete}>Delete</button>
         </div>

@@ -3,7 +3,7 @@ import './calendar.css'
 import { useCalendar } from '../../context/CalendarContext';
 import { useEventContext } from '../../context/EventContext';
 
-const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const months = [
   'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
 ];
@@ -15,6 +15,7 @@ const Calendar = ({ year, month }) => {
   const handleDateClick = (day) => {
     const newDate = new Date(year, month - 1, day);
     setSelectedDate(newDate);
+    document.body.classList.add("date-selected");
   };
 
   const currentDate = new Date();
@@ -57,7 +58,7 @@ const Calendar = ({ year, month }) => {
 
     const daysArray = [];
     for (let day = 1; day <= daysInMonth; day++) {
-      const className = `calendar-day ${hasEvents(day) && "event-indicator"} ${(day === currentDay && year === currentYear && month === currentMonth) && 'today'}`;
+      const className = `calendar-day relative text-sm p-2 rounded cursor-pointer text-neutral-700 hover:bg-gray-200 hover:text-black text-center ${hasEvents(day) && "event-indicator"} ${(day === currentDay && year === currentYear && month === currentMonth) && 'today text-rose-600'}`;
       daysArray.push(
         <td key={`day-${day}`} className={className} onClick={() => handleDateClick(day)}>
           {day}
@@ -86,13 +87,13 @@ const Calendar = ({ year, month }) => {
   };
 
   return (
-    <div className="calendar-container" id={`calendar-${month}-${year}`}>
-      <h2>{months[date.getMonth()]} {date.getFullYear()}</h2>
+    <div className="border border-neutral-300 p-4 py-3 rounded-lg calendar-container mb-4" id={`calendar-${month}-${year}`}>
+      <h2 className='text-lg font-bold text-black'>{months[date.getMonth()]} {date.getFullYear()}</h2>
       <table className="calendar">
         <thead>
           <tr>
             {days.map((day, i) => (
-              <th key={`day-${i}`} className="calendar-header">
+              <th key={`day-${i}`} className="calendar-header text-sm text-neutral-500">
                 {day}
               </th>
             ))}

@@ -5,9 +5,9 @@ const MultipleCalendars = () => {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth() + 1;
-  
+
   useEffect(() => {
-    handleMonthChange({target:{value: `calendar-${currentMonth}-${currentYear}`}})  
+    handleMonthChange({ target: { value: `calendar-${currentMonth}-${currentYear}` } })
     // eslint-disable-next-line
   }, []);
 
@@ -43,18 +43,23 @@ const MultipleCalendars = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Multiple Calendars</h1>
-      <div className="dropdown">
-        <select onChange={handleMonthChange}>
-          {calendars.map((calendar) => (
-            <option key={`option-${calendar.month}-${calendar.year}`} value={`calendar-${calendar.month}-${calendar.year}`}>
-              {new Date(calendar.year, calendar.month, 1).toLocaleString('default', { month: 'long', year: "numeric" })}
+    <div className='h-vh flex flex-col'>
+      <div className='p-4 bg-white'>
+        <h1 className='text-xl font-bold text-center'>Event Schedular</h1>
+        <div className='flex items-center justify-center'>
+          <select className='p-1 rounded-lg max-w-max' onChange={handleMonthChange}>
+            <option>
+              --Select a Month--
             </option>
-          ))}
-        </select>
+            {calendars.map((calendar) => (
+              <option key={`option-${calendar.month}-${calendar.year}`} value={`calendar-${calendar.month}-${calendar.year}`}>
+                {new Date(calendar.year, (calendar.month + 11) % 12, 1).toLocaleString('default', { month: 'long', year: "numeric" })}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
-      <div className="multiple-calendars">
+      <div className="grow overflow-auto px-4">
         {calendars.map((calendar) => <Calendar key={`calendar-${calendar.month}-${calendar.year}`} year={calendar.year} month={calendar.month} />)}
       </div>
     </div>

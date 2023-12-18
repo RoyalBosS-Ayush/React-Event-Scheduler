@@ -4,9 +4,8 @@ import AddEventForm from '../AddEventForm';
 import { useEventContext } from '../../context/EventContext';
 
 const EventList = ({ selectedDate }) => {
-  const { events } = useEventContext();
-    
-  console.log("events ", events, selectedDate);
+    const { events } = useEventContext();
+
     const formattedDate = selectedDate.toLocaleDateString('en-US', {
         weekday: 'long',
         year: 'numeric',
@@ -23,12 +22,12 @@ const EventList = ({ selectedDate }) => {
     // const eventsOnSelectedDate = [];
 
     return (
-        <div className="event-list">
-            <h2>{formattedDate}</h2>
-            <ul>
+        <div className="event-list w-full">
+            <h2 className='text-center text-2xl font-bold mb-4'>{formattedDate}</h2>
+            <ul className='flex flex-col items-center'>
                 {eventsOnSelectedDate.length > 0 ? (
                     eventsOnSelectedDate.map((event) => (
-                        <li key={event.id}>
+                        <li className='w-4/5' key={event.id}>
                             <Event
                                 id={event.id}
                                 time={event.time}

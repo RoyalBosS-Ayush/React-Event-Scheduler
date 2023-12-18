@@ -5,7 +5,6 @@
 
 .h-vh {
     height: 100vh;
-    overflow: auto;
 }
 
 .center {
@@ -13,4 +12,29 @@
     flex: 1;
     align-items: center;
     justify-content: center;
+}
+
+.close-event-list-btn {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .close-event-list-btn {
+        display: inline;
+    }
+    .colcontainer {
+        justify-content: center;
+    }
+
+    .date-selected .leftcol {
+        display: none;
+    }
+
+    .rightcol {
+        display: none;
+    }
+
+    .date-selected .rightcol {
+        display: flex;
+    }
 }

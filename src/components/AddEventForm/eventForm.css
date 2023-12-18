@@ -1,0 +1,12 @@
+input {
+    max-width: 65%;
+}
+
+@media screen and (max-width: 800px) {
+    .description-container {
+        display: block;
+    }
+    .description-container button{
+        margin-top: 0.5rem;
+    }
+}

@@ -7,35 +7,9 @@ export const useEventContext = () => {
 };
 
 export const EventProvider = ({ children }) => {
-  const [events, setEvents] = useState([
-    {
-      "id": new Date(1702894147367),
-      "date": new Date("2023-12-17T18:30:00.000Z"),
-      "time": "21:44",
-      "description": "dfss"
-    },
-    {
-      "id": new Date(1702893878629),
-      "date": new Date("2023-12-06T18:30:00.000Z"),
-      "time": "12:56",
-      "description": "wq"
-    },
-    {
-      "id": new Date(1702893917846),
-      "date": new Date("2023-12-22T18:30:00.000Z"),
-      "time": "05:23",
-      "description": "dasd"
-    },
-    {
-      "id": new Date(1702893933014),
-      "date": new Date("2023-12-06T18:30:00.000Z"),
-      "time": "05:04",
-      "description": "dkkn"
-    }
-  ]);
+  const [events, setEvents] = useState([]);
 
   const addEvent = (newEvent) => {
-    console.log(newEvent);
     setEvents([...events, newEvent]);
   };
 

@@ -1,11 +1,9 @@
-import Calendar from "./components/Calendar";
+import Schedular from "./pages/Schedular";
 
 function App() {
   return (
     <div className="App">
-      <Calendar year={2023} month={11} />
-      <Calendar year={2023} month={12} />
-      <Calendar year={2024} month={1} />
+      <Schedular />
     </div>
   );
 }

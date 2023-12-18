@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import './calendar.css'
 
 const Calendar = ({ year, month }) => {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -13,17 +14,17 @@ const Calendar = ({ year, month }) => {
 
   const date = new Date(year, month - 1, 1);
 
-  const getDaysInMonth = (date) => {
+  const getDaysInMonth = useCallback((date) => {
     const year = date.getFullYear();
     const month = date.getMonth();
     return new Date(year, month + 1, 0).getDate();
-  };
+  }, []);
 
-  const getMonthStartDay = (date) => {
+  const getMonthStartDay = useCallback((date) => {
     const year = date.getFullYear();
     const month = date.getMonth();
     return new Date(year, month, 1).getDay();
-  };
+  }, []);
 
   const renderCalendar = () => {
     const daysInMonth = getDaysInMonth(date);
@@ -65,7 +66,7 @@ const Calendar = ({ year, month }) => {
   };
 
   return (
-    <div className="calendar-container">
+    <div className="calendar-container" id={`calendar-${month}-${year}`}>
       <h2>{months[date.getMonth()]} {date.getFullYear()}</h2>
       <table className="calendar">
         <thead>
